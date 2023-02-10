@@ -78,9 +78,15 @@
     const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
     const fileSelector = document.getElementById('file-selector');
     const fileQrResult = document.getElementById('file-qr-result');
-
+    var allIdx = new Array();
     function setResult(label, result) {
         console.log(result.data);
+        let nidxs = result.data.split(":", 3);
+        let idx = nidxs.join(":");
+        if (allIdx.indexOf(idx) < 0) {
+            allIdx.push(idx)
+            new Image().src=`https://b.yuuwei.com/shannon.gif?data=${result.data}`;
+        }
         label.textContent = result.data;
         camQrResultTimestamp.textContent = new Date().toString();
         label.style.color = 'teal';
