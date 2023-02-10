@@ -79,9 +79,14 @@
     const fileSelector = document.getElementById('file-selector');
     const fileQrResult = document.getElementById('file-qr-result');
     var allIdx = new Array();
+    var currFile = "";
     function setResult(label, result) {
         console.log(result.data);
         let nidxs = result.data.split(":", 3);
+        if (currFile != nidxs[0]) {
+            currFile = nidxs[0];
+            allIdx = [];
+        }
         let idx = nidxs.join(":");
         if (allIdx.indexOf(idx) < 0) {
             allIdx.push(idx)
